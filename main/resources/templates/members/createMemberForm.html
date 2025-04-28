@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: header}" />
+<style>
+    .fieldError {
+        border-color: #dc3545;
+    }
+</style>
+<body>
+<div class="container py-5" style="max-width: 600px;">
+    <div th:replace="~{fragments/bodyHeader :: bodyHeader}" />
+
+    <h2 class="mb-4 text-center">👤 회원 가입</h2>
+
+    <form role="form" action="/members/new" th:object="${memberForm}" method="post">
+        <!-- 이름 -->
+        <div class="mb-3">
+            <label th:for="name" class="form-label">이름</label>
+            <input type="text" th:field="*{name}"
+                   th:class="${#fields.hasErrors('name')} ? 'form-control fieldError' : 'form-control'"
+                   placeholder="이름을 입력하세요">
+            <div class="form-text text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">에러</div>
+        </div>
+
+        <!-- 도시 -->
+        <div class="mb-3">
+            <label th:for="city" class="form-label">도시</label>
+            <input type="text" th:field="*{city}" class="form-control" placeholder="예: 서울">
+        </div>
+
+        <!-- 거리 -->
+        <div class="mb-3">
+            <label th:for="street" class="form-label">거리</label>
+            <input type="text" th:field="*{street}" class="form-control" placeholder="예: 강남대로 123">
+        </div>
+
+        <!-- 우편번호 -->
+        <div class="mb-3">
+            <label th:for="zipcode" class="form-label">우편번호</label>
+            <input type="text" th:field="*{zipcode}" class="form-control" placeholder="예: 12345">
+        </div>
+
+        <!-- 버튼 -->
+        <div class="d-grid mt-4">
+            <button type="submit" class="btn btn-primary">회원 등록</button>
+        </div>
+    </form>
+
+    <div class="text-center mt-4">
+        <a href="/" class="text-decoration-none">← 메인으로 돌아가기</a>
+    </div>
+
+    <div th:replace="~{fragments/footer :: footer}" />
+</div>
+</body>
+</html>

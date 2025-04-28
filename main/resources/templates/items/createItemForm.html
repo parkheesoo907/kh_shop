@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: header}" />
+<style>
+  .fieldError {
+      border-color: #dc3545;
+  }
+</style>
+<body>
+<div class="container py-5" style="max-width: 600px;">
+  <div th:replace="~{fragments/bodyHeader :: bodyHeader}"/>
+
+  <h2 class="mb-4 text-center">📦 상품 등록</h2>
+
+  <form th:action="@{/items/new}" th:object="${form}" method="post">
+    <!-- 상품명 -->
+    <div class="mb-3">
+      <label th:for="name" class="form-label">상품명</label>
+      <input type="text" th:field="*{name}" class="form-control">
+    </div>
+
+    <!-- 가격 -->
+    <div class="mb-3">
+      <label th:for="price" class="form-label">가격</label>
+      <input type="number" th:field="*{price}" class="form-control">
+    </div>
+
+    <!-- 수량 -->
+    <div class="mb-3">
+      <label th:for="stockQuantity" class="form-label">수량</label>
+      <input type="number" th:field="*{stockQuantity}" class="form-control">
+    </div>
+
+    <!-- 저자 -->
+    <div class="mb-3">
+      <label th:for="author" class="form-label">저자</label>
+      <input type="text" th:field="*{author}" class="form-control">
+    </div>
+
+    <!-- ISBN -->
+    <div class="mb-3">
+      <label th:for="isbn" class="form-label">ISBN</label>
+      <input type="text" th:field="*{isbn}" class="form-control">
+    </div>
+
+    <!-- 등록 버튼 -->
+    <div class="d-grid mt-4">
+      <button type="submit" class="btn btn-dark">상품 등록</button>
+    </div>
+  </form>
+
+  <div class="text-center mt-4">
+    <a href="/" class="text-decoration-none">← 메인으로 돌아가기</a>
+  </div>
+
+  <div th:replace="~{fragments/footer :: footer}" />
+</div>
+</body>
+</html>

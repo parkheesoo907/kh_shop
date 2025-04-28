@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: header}" />
+<body>
+<div class="container py-5" style="max-width: 600px;">
+  <div th:replace="~{fragments/bodyHeader :: bodyHeader}" />
+
+  <h2 class="mb-4 text-center">🧾 상품 주문</h2>
+
+  <form role="form" action="/order" method="post">
+    <!-- 주문회원 선택 -->
+    <div class="mb-3">
+      <label for="member" class="form-label">주문 회원</label>
+      <select name="memberId" id="member" class="form-select">
+        <option value="">회원 선택</option>
+        <option th:each="member : ${members}"
+                th:value="${member.id}"
+                th:text="${member.name}">홍길동</option>
+      </select>
+    </div>
+
+    <!-- 상품 선택 -->
+    <div class="mb-3">
+      <label for="item" class="form-label">상품명</label>
+      <select name="itemId" id="item" class="form-select">
+        <option value="">상품 선택</option>
+        <option th:each="item : ${items}"
+                th:value="${item.id}"
+                th:text="${item.name}">JPA 책</option>
+      </select>
+    </div>
+
+    <!-- 주문 수량 -->
+    <div class="mb-3">
+      <label for="count" class="form-label">주문 수량</label>
+      <input type="number" name="count" id="count" class="form-control" placeholder="예: 3">
+    </div>
+
+    <!-- 버튼 -->
+    <div class="d-grid mt-4">
+      <button type="submit" class="btn btn-success">주문하기</button>
+    </div>
+  </form>
+
+  <div class="text-center mt-4">
+    <a href="/" class="text-decoration-none">← 메인으로 돌아가기</a>
+  </div>
+
+  <div th:replace="~{fragments/footer :: footer}" />
+</div>
+</body>
+</html>
